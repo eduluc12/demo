@@ -1,0 +1,13 @@
+[
+    {
+        "animal_id": {
+            "S": "001"
+        },
+        "animal_name": {
+            "S": "Perro"
+        },
+        "animal_color": {
+            "S": "Blanco"
+        }
+    }
+]
