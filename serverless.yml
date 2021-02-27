@@ -63,11 +63,11 @@ plugins:
 
 functions:
   hello:
-    handler: build/handler.index
+    handler: build/handler.apiGet
     events:
       - http:
           path: /api/{proxy+}
-          method: ANY
+          method: GET
           cors: true
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events

@@ -6,6 +6,6 @@ import {app} from './infrastructure/api/router';
 
 Container.bind(Swapi).to(SwapiService);
 
-export const index = serverlessExpress({
+export const apiGet = serverlessExpress({
   app
 });
