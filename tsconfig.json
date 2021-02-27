@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "outDir": "build",
+        "sourceMap": true,
+        "experimentalDecorators": true,
+        "strictPropertyInitialization": false,
+        "emitDecoratorMetadata": true,
+        "esModuleInterop": true,
+        "target": "ES6",
+        "module": "commonjs",
+        "rootDir": "./src"
+    },
+    "include": [
+        "src/"
+    ],
+    "exclude": []
+}
