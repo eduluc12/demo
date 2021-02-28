@@ -9,7 +9,7 @@ yarn install
 Posterior a ello , ejecutar el siguiente comando:
 
 ```bash
-sls dynamodb install
+npx sls dynamodb install
 ```
 
 # Entorno de trabajo
@@ -23,7 +23,7 @@ export AWS_SECRET_ACCESS_KEY=<VALUE>
 Para levantar el emulador ejecutar el siguiente comando
 
 ```bash
-yarn run local:server
+yarn run local:database
 ```
 
 Posteriormente para levantar las funciones con el codigo 'typescript' ya transpilado a javascript, ejecutar el siguiente comando
