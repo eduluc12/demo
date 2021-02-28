@@ -1,15 +1,15 @@
 {
   "name": "demo",
   "version": "1.0.0",
-  "main": "index.js",
-  "author": "edu <edu@emai.com>",
+  "author": "Eduardo Manuel Barron Luccioni <barron.luccioni@gmail.com>",
   "license": "MIT",
   "scripts": {
     "build": "tsc",
     "test": "jest",
     "deploy": "npm run build && serverless deploy --stage staging",
     "local:server": "npm run build && serverless offline",
-    "local:database": "serverless dynamodb start --seed=test"
+    "local:database": "serverless dynamodb start --seed=test",
+    "gen:openapi": "tsoa spec"
   },
   "devDependencies": {
     "@jest-mock/express": "^1.4.0",
@@ -21,6 +21,7 @@
     "serverless-dynamodb-local": "^0.2.39",
     "serverless-offline": "^6.8.0",
     "ts-jest": "^26.5.2",
+    "tsoa": "^3.5.2",
     "typescript": "^4.2.2"
   },
   "dependencies": {

@@ -51,3 +51,10 @@ Para el transpilado de typescript a javascript, ejecutar el siguiente comando
 ```bash
 yarn build
 ```
+
+# Automatizacion OPENAPI
+Para la generacion del swagger.json usando tsoa, ejecutar el siguiente comando
+
+```bash
+yarn run gen:openapi
+```
