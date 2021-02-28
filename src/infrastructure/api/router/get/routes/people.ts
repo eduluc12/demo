@@ -3,7 +3,7 @@ import { Container } from 'typescript-ioc';
 import {
     GetPeoplesUseCase,
     GetPeopleUseCase
-} from '../../../application/usecases/people/';
+} from '../../../../../application/usecases/people/';
 
 const people = Router();
 people.get('/', async (req, res, next) => {

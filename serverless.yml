@@ -22,53 +22,37 @@ frameworkVersion: '2'
 
 provider:
   name: aws
+  stage: ${opt:stage, 'dev'}
   runtime: nodejs12.x
   lambdaHashingVersion: 20201221
-
-# you can overwrite defaults here
-#  stage: dev
-#  region: us-east-1
-
-# you can add statements to the Lambda function's IAM Role here
-#  iamRoleStatements:
-#    - Effect: "Allow"
-#      Action:
-#        - "s3:ListBucket"
-#      Resource: { "Fn::Join" : ["", ["arn:aws:s3:::", { "Ref" : "ServerlessDeploymentBucket" } ] ]  }
-#    - Effect: "Allow"
-#      Action:
-#        - "s3:PutObject"
-#      Resource:
-#        Fn::Join:
-#          - ""
-#          - - "arn:aws:s3:::"
-#            - "Ref" : "ServerlessDeploymentBucket"
-#            - "/*"
-
-# you can define service wide environment variables here
-#  environment:
-#    variable1: value1
-
-# you can add packaging information here
-#package:
-#  include:
-#    - include-me.js
-#    - include-me-dir/**
-#  exclude:
-#    - exclude-me.js
-#    - exclude-me-dir/**
+  environment:
+    NODE_ENV: ${self:provider.stage}
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+      Resource: "*"
 
 plugins:
   - serverless-offline
   - serverless-dynamodb-local
 
 functions:
-  hello:
+  getSide:
     handler: build/handler.apiGet
     events:
       - http:
           path: /api/{proxy+}
           method: GET
+  postSide:
+    handler: build/handler.apiPost
+    events:
+      - http:
+          path: /api/{proxy+}
+          method: POST
 
 resources:
   Resources:
@@ -77,11 +61,23 @@ resources:
       Properties:
         TableName: animals
         AttributeDefinitions:
-          - AttributeName: animal_id
+          - AttributeName: id
+            AttributeType: S
+          - AttributeName: created
             AttributeType: S
         KeySchema:
-          - AttributeName: animal_id
+          - AttributeName: id
             KeyType: HASH
+        GlobalSecondaryIndexes:
+        - IndexName: idx_created
+          KeySchema:
+          - AttributeName: created
+            KeyType: HASH
+          Projection:
+            ProjectionType: ALL
+          ProvisionedThroughput:
+            ReadCapacityUnits: 1
+            WriteCapacityUnits: 1
         ProvisionedThroughput:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
@@ -106,4 +102,6 @@ custom:
         sources:
           - table: animals
             rawsources: [./mock/animals.json]
+
+  
 

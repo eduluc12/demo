@@ -7,6 +7,10 @@ describe('Interceptor', () => {
         response = getMockRes();
     });
 
+    afterEach(() => {
+        jest.restoreAllMocks();
+    });
+
     test('When dont exists exception, call next function', () => {
         Interceptor()(
             undefined,
@@ -18,6 +22,7 @@ describe('Interceptor', () => {
     });
 
     test('When exists exception, send json with internal error', () => {
+        jest.spyOn(console, 'error').mockReturnValue();
         Interceptor()(
             new Error('message'),
             null,

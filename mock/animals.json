@@ -1,13 +1,16 @@
 [
     {
-        "animal_id": {
-            "S": "001"
+        "id": {
+            "S": "602f7d12-d420-4c84-979d-88a6ef6b5400"
         },
-        "animal_name": {
+        "nombre": {
             "S": "Perro"
         },
-        "animal_color": {
+        "color": {
             "S": "Blanco"
+        },
+        "created": {
+            "S": "2021-02-28T01:06:06.561Z"
         }
     }
 ]

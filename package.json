@@ -7,7 +7,7 @@
   "scripts": {
     "build": "tsc",
     "test": "jest",
-    "deploy": "serverless deploy",
+    "deploy": "npm run build && serverless deploy --stage staging",
     "local:server": "npm run build && serverless offline",
     "local:database": "serverless dynamodb start --seed=test"
   },
@@ -25,8 +25,13 @@
   },
   "dependencies": {
     "@vendia/serverless-express": "^4.3.3",
+    "aws-sdk": "^2.853.0",
     "axios": "^0.21.1",
+    "body-parser": "^1.19.0",
+    "class-transformer": "^0.4.0",
     "express": "^4.17.1",
-    "typescript-ioc": "^3.2.2"
+    "joi": "^17.4.0",
+    "typescript-ioc": "^3.2.2",
+    "uuid": "^8.3.2"
   }
 }
