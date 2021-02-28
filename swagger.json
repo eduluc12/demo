@@ -1,0 +1,401 @@
+{
+	"components": {
+		"examples": {},
+		"headers": {},
+		"parameters": {},
+		"requestBodies": {},
+		"responses": {},
+		"schemas": {
+			"SwapiPeople": {
+				"properties": {
+					"url": {
+						"type": "string"
+					},
+					"edicion": {
+						"type": "string"
+					},
+					"creacion": {
+						"type": "string"
+					},
+					"naves_estelares": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"vehiculos": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"especies": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"peliculas": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"mundo": {
+						"type": "string"
+					},
+					"genero": {
+						"type": "string"
+					},
+					"fecha_nacimiento": {
+						"type": "string"
+					},
+					"color_ojos": {
+						"type": "string"
+					},
+					"color_piel": {
+						"type": "string"
+					},
+					"color_cabello": {
+						"type": "string"
+					},
+					"masa": {
+						"type": "number",
+						"format": "double"
+					},
+					"altura": {
+						"type": "number",
+						"format": "double"
+					},
+					"nombre": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"url",
+					"edicion",
+					"creacion",
+					"naves_estelares",
+					"vehiculos",
+					"especies",
+					"peliculas",
+					"mundo",
+					"genero",
+					"fecha_nacimiento",
+					"color_ojos",
+					"color_piel",
+					"color_cabello",
+					"masa",
+					"altura",
+					"nombre"
+				],
+				"type": "object"
+			},
+			"SwapiPeoples": {
+				"properties": {
+					"resultados": {
+						"items": {
+							"$ref": "#/components/schemas/SwapiPeople"
+						},
+						"type": "array"
+					},
+					"anterior": {
+						"type": "string",
+						"nullable": true
+					},
+					"siguiente": {
+						"type": "string"
+					},
+					"total": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"resultados",
+					"anterior",
+					"siguiente",
+					"total"
+				],
+				"type": "object"
+			},
+			"Animal": {
+				"properties": {
+					"id": {
+						"type": "string"
+					},
+					"nombre": {
+						"type": "string"
+					},
+					"color": {
+						"type": "string"
+					},
+					"created": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"nombre",
+					"color",
+					"created"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"AnimalDTO": {
+				"properties": {
+					"color": {
+						"type": "string"
+					},
+					"nombre": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"color",
+					"nombre"
+				],
+				"type": "object"
+			}
+		},
+		"securitySchemes": {}
+	},
+	"info": {
+		"title": "demo",
+		"version": "1.0.0",
+		"license": {
+			"name": "MIT"
+		},
+		"contact": {
+			"name": "edu ",
+			"email": "edu@emai.com"
+		}
+	},
+	"openapi": "3.0.0",
+	"paths": {
+		"/people": {
+			"get": {
+				"operationId": "GetPeoples",
+				"responses": {
+					"200": {
+						"description": "Datos de todas las personas",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/SwapiPeoples"
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "Error Interno",
+						"content": {
+							"application/json": {
+								"schema": {
+									"properties": {
+										"message": {
+											"type": "string"
+										}
+									},
+									"required": [
+										"message"
+									],
+									"type": "object"
+								},
+								"examples": {
+									"Example 1": {
+										"value": {
+											"message": "Internal Server Error"
+										}
+									}
+								}
+							}
+						}
+					}
+				},
+				"description": "Obtener datos del API de personas de SWAPI",
+				"tags": [
+					"Lambda GET"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"description": "Numero de pagina",
+						"in": "query",
+						"name": "page",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
+			}
+		},
+		"/people/{id}": {
+			"get": {
+				"operationId": "GetPeople",
+				"responses": {
+					"200": {
+						"description": "Datos de una persona",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/SwapiPeople"
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "Error Interno",
+						"content": {
+							"application/json": {
+								"schema": {
+									"properties": {
+										"message": {
+											"type": "string"
+										}
+									},
+									"required": [
+										"message"
+									],
+									"type": "object"
+								},
+								"examples": {
+									"Example 1": {
+										"value": {
+											"message": "Internal Server Error"
+										}
+									}
+								}
+							}
+						}
+					}
+				},
+				"description": "Obtener datos del API de una persona de SWAPI",
+				"tags": [
+					"Lambda GET"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"description": "Id de la persona",
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
+			}
+		},
+		"/animals": {
+			"get": {
+				"operationId": "GetAnimals",
+				"responses": {
+					"200": {
+						"description": "Dato de animales",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/Animal"
+									},
+									"type": "array"
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "Error Interno",
+						"content": {
+							"application/json": {
+								"schema": {
+									"properties": {
+										"message": {
+											"type": "string"
+										}
+									},
+									"required": [
+										"message"
+									],
+									"type": "object"
+								},
+								"examples": {
+									"Example 1": {
+										"value": {
+											"message": "Internal Server Error"
+										}
+									}
+								}
+							}
+						}
+					}
+				},
+				"description": "Obtener datos de la base de datos animales (DynamoDB)",
+				"tags": [
+					"Lambda GET"
+				],
+				"security": [],
+				"parameters": []
+			},
+			"post": {
+				"operationId": "CreateAnimal",
+				"responses": {
+					"201": {
+						"description": "Creado Correctamente"
+					},
+					"500": {
+						"description": "Error Interno",
+						"content": {
+							"application/json": {
+								"schema": {
+									"properties": {
+										"message": {
+											"type": "string"
+										}
+									},
+									"required": [
+										"message"
+									],
+									"type": "object"
+								},
+								"examples": {
+									"Example 1": {
+										"value": {
+											"message": "Internal Server Error"
+										}
+									}
+								}
+							}
+						}
+					}
+				},
+				"description": "Creacion de un animal",
+				"tags": [
+					"Lambda POST"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"description": "Datos del animal",
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/AnimalDTO"
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"servers": [
+		{
+			"url": "/"
+		}
+	]
+}

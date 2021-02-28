@@ -1,0 +1,9 @@
+{
+    "entryFile": "src",
+    "noImplicitAdditionalProperties": "throw-on-extras",
+    "controllerPathGlobs": ["src/**/*.tsoa.ts"],
+    "spec": {
+      "outputDirectory": "./",
+      "specVersion": 3
+    }
+}
